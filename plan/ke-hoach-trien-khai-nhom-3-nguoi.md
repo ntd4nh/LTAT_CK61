@@ -5,7 +5,11 @@
 **Cách đọc kế hoạch**
 
 - Kế hoạch chỉ nêu thứ tự thực hiện, quan hệ phụ thuộc và điều kiện chuyển bước. Không có lịch, mốc thời gian hay ước lượng thời lượng.
-- Nhãn nguồn: **[TL]** là thông tin theo tài liệu, kèm trang PDF; **[ĐX]** là đề xuất của nhóm; **[CXM]** là điểm cần xác minh khi có toàn văn, mã nguồn hoặc dữ liệu của tác giả.
+- Nhãn nguồn:
+  - **[TL]**: thông tin theo tài liệu, kèm trang PDF.
+  - **[NTC]**: lấy từ nguồn thứ cấp, hoặc từ mã/dữ liệu công khai của nhóm tác giả (mục A.6); chưa đối chiếu được với toàn văn bài báo.
+  - **[ĐX]**: đề xuất của nhóm.
+  - **[CXM]**: điểm cần xác minh khi có toàn văn, mã nguồn hoặc dữ liệu của tác giả.
 - Các việc trong mục C.0 đến C.7 đều thuộc phần **CỐT LÕI**. Mục C.8 là phần **MỞ RỘNG**, chỉ làm khi đủ điều kiện ghi ở đó.
 - "Trang" luôn là số trang của tệp PDF trong `docs/` (bản in 8 trang).
 
@@ -41,7 +45,7 @@
 | So sánh SS-GNN với 4 mô hình GNN phổ biến (Li 2015, Kipf & Welling 2016, Veličković 2017, Brody 2021). Tiêu đề bài Brody, "How attentive are graph attention networks?", hiện ở trang 6 | 4, 6 | P-04, X-01. Tên GGNN, GCN, GAT, GATv2 là suy luận từ trích dẫn [CXM]. |
 | Table 4: reentrancy **cấp hợp đồng**, Recall 89,77%, Precision 91,40%; giá trị F1 bị cắt | 5 | Chỉ dùng làm bối cảnh trong R-03. Không dùng làm kết quả dự kiến hay ngưỡng của nhóm. |
 | Bài báo nói đã đánh giá ở cả mức câu lệnh và mức hợp đồng, nhưng bản in không có số liệu mức câu lệnh | 4 | P-04: nhóm tự định nghĩa chỉ số mức câu lệnh. |
-| Danh mục tham khảo có ConsenSys "Solc-typed-ast" (2022), ConsenSys "Mythril" (2021) và Durieux và cộng sự (2020), tức bài báo giới thiệu SmartBugs | 7 | Gợi ý công cụ và dữ liệu ứng viên. **Không** xác nhận tác giả đã dùng chúng trong triển khai. |
+| Danh mục tham khảo có ConsenSys "Solc-typed-ast" (2022), ConsenSys "Mythril" (2021) và Durieux và cộng sự (2020), tức bài báo giới thiệu SmartBugs | 7 | Gợi ý công cụ và dữ liệu ứng viên. Bản PDF không xác nhận tác giả dùng chúng; riêng solc-typed-ast có trong mã BSP_SC của nhóm tác giả [NTC, mục A.6]. |
 | Bố cục bài: mục 3 xây dữ liệu, mục 4 phương pháp, mục 5 thiết lập thí nghiệm, mục 6 kết quả, mục 7 thảo luận và mối đe dọa tính hợp lệ | 4 | P-01: đây là các mục cần đọc khi có toàn văn. |
 
 ### A.4. Hình, bảng và phần thông tin còn thiếu
@@ -56,7 +60,7 @@
   - kiến trúc SS-GNN chi tiết: vị trí Tree-LSTM so với các bước truyền thông điệp, số lớp, kích thước, hàm mất mát;
   - siêu tham số, bảng kết quả đầy đủ, kết quả mức câu lệnh và giá trị F1.
 
-  Các mục này đều do nhóm tự thiết kế [ĐX] và được ghi lại trong P-01 để cập nhật khi có toàn văn.
+  Các mục này đều do nhóm tự thiết kế [ĐX] và được ghi lại trong P-01 để cập nhật khi có toàn văn. Một phần đã có thông tin từ nguồn thứ cấp và mã/dữ liệu của nhóm tác giả (mục A.6), nhưng vẫn là [NTC] cho tới khi đối chiếu được với bài báo.
 
 ### A.5. Điểm lệch giữa các nguồn
 
@@ -67,27 +71,33 @@
 
 ### A.6. Xác minh nguồn công khai của bài báo
 
-**Trạng thái hiện tại: chưa xác minh.** "Chưa tìm thấy" không có nghĩa là "không có mã nguồn".
+Đã tra cứu qua Internet. Bảng dưới phân biệt "đã thấy", "không tìm thấy" (không có nghĩa là không tồn tại) và "không truy cập được".
 
-| Câu hỏi | Điều đã biết | Trạng thái |
+| Câu hỏi | Kết quả | Mức chắc chắn | Nguồn |
+| --- | --- | --- | --- |
+| Toàn văn có bản công khai không? | **Không tìm thấy** bản mở hợp lệ: Semantic Scholar ghi `isOpenAccess: false`; OpenAlex ghi `oa_status: closed`, không kho lưu nào có toàn văn; Unpaywall không có vị trí mở; arXiv không có preprint dưới tên nào. ResearchGate chặn truy cập tự động nên chưa loại trừ được bản tác giả tự chia sẻ. | Cao | [Semantic Scholar API](https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/j.jss.2023.111919?fields=title,openAccessPdf,externalIds,isOpenAccess), [OpenAlex](https://api.openalex.org/works/doi:10.1016/j.jss.2023.111919), [Crossref](https://api.crossref.org/works/10.1016/j.jss.2023.111919), Unpaywall API, arXiv API |
+| Có bộ dữ liệu công khai không? | **Có.** Repo `smartcontract-detect-yzu/sbp_dataset` (tài khoản của Đại học Dương Châu, nơi phần lớn tác giả công tác). README chỉ có một liên kết Google Drive tới tệp `sbp_dataset_src_6K.tar.gz` (khoảng 92 MB). Repo có thư mục mẫu `example/` gồm thông tin SBP và nhãn câu lệnh của một hàm. Repo **không có tệp giấy phép**. Chưa tải tệp nén nên chưa biết nó chỉ chứa mã nguồn hay có cả nhãn đã xử lý. | Cao (repo và README đã kiểm tra trực tiếp); liên hệ với bài báo dựa trên nguồn thứ cấp | [sbp_dataset](https://github.com/smartcontract-detect-yzu/sbp_dataset); danh mục [defect-datasets.github.io](https://defect-datasets.github.io/) (ghi bài `journals/jss/CaiLZZS24` là "available" kèm repo này); khảo sát Zhu và cộng sự, [arXiv 2504.17977](https://arxiv.org/abs/2504.17977) |
+| Có mã nguồn SS-GNN công khai không? | **Không tìm thấy.** Cùng tài khoản có repo `BSP_SC` (mô tả "work3"), gồm: dựng AST bằng solc-typed-ast, phân tích CFG bằng Slither, nhận diện và loại bỏ SBP, dựng mẫu dữ liệu, và bộ mã hóa câu lệnh bằng Child-Sum Tree-LSTM (DGL). Repo này **không có phần GNN trên CFG**, không có các so sánh GNN hay baseline, và thiếu các module được import (`sol_analyzer.*`, `eth_api.etherscan`) nên không chạy được nguyên trạng. Không thấy bằng chứng đây là mã chính thức của bài báo. Repo `SC_BSP_VDR` cùng tài khoản đang rỗng. | Trung bình | [BSP_SC](https://github.com/smartcontract-detect-yzu/BSP_SC); [danh sách repo của tài khoản](https://github.com/smartcontract-detect-yzu?tab=repositories); tìm trên GitHub theo "SS-GNN", "syntax sensitive", "tree-lstm solidity" không thấy repo liên quan |
+| Mục Data availability của bài báo nói gì? | **Không truy cập được**: ScienceDirect, ACM DL, ResearchGate đều chặn truy cập tự động. Fig. 11 và Table 4 cũng chưa xem được. | Không xác minh được | — |
+
+**Thông tin bổ sung [NTC], chưa đối chiếu được với toàn văn**
+
+| Thông tin | Nguồn | Ảnh hưởng tới kế hoạch |
 | --- | --- | --- |
-| Toàn văn có đọc được công khai không? | Bản trong `docs/` là trang tóm tắt ScienceDirect; trang 4 có nút "Access through your organization", nghĩa là toàn văn cần quyền truy cập qua tổ chức [TL, trang 4]. Chưa kiểm tra bản preprint hoặc bản lưu ở kho của trường tác giả. | Chưa xác minh |
-| Có mã nguồn công khai không? | Phần hiển thị trong bản in (CRediT, Declaration of competing interest, Acknowledgments) không có đường dẫn mã nguồn [TL, trang 6]. Toàn văn có thể có mục Data availability mà bản in không hiển thị. | Chưa xác minh |
-| Có bộ dữ liệu công khai không? | Bản in không nhắc tới nơi công bố dữ liệu. | Chưa xác minh |
+| Bài báo xét **7 loại lỗ hổng**: tràn số, lời gọi mức thấp không kiểm tra, self-destruct, reentrancy, phụ thuộc thứ tự giao dịch (ERC20 `approve`), DoS do giới hạn gas, ép kiểu không an toàn. Dữ liệu khoảng 6.000 hợp đồng; F1 trung bình 90,57. Cùng nguồn lại nói phần phát hiện mức dòng chỉ xét reentrancy, tức là tự mâu thuẫn. | Ressi và cộng sự, [arXiv 2407.18639](https://arxiv.org/abs/2407.18639), bảng tổng hợp | Phạm vi cốt lõi chỉ có reentrancy là **phạm vi rút gọn** so với bài báo (mục A.9, F.2). Không dùng 90,57 làm mục tiêu. |
+| Trên dữ liệu SBP, Peculiar (Wu 2021) và Zhuang 2020 đạt F1 thấp hơn nhiều so với kết quả gốc của chính các bài đó. | Ressi và cộng sự | Bối cảnh cho R-03; nhóm không cài đặt lại hai baseline này. |
+| Cách gán nhãn trong mẫu dữ liệu công khai: mỗi SBP gắn với một nút biểu thức; nhãn được đẩy lên câu lệnh cấp cao chứa nó (ví dụ câu lệnh dùng SafeMath `add` mang nhãn SafeMath, lời gọi `safeTransfer` mang nhãn "low-level call"). Với `nonReentrant`, nhãn **không** đặt ở câu lệnh lời gọi ra ngoài mà ở một **nút ảo `v_modifier`** trong đồ thị hàm. | `example/` của sbp_dataset (đã đọc trực tiếp hàm `GreenVesting.release`: 16 nút, 7 nút mang nhãn) | Quy tắc L1 của nhóm (gán nhãn câu lệnh lời gọi ra ngoài) **khác** cách làm này. P-02 phải ghi rõ khác biệt; D-10 đo mức khác biệt; X-07 thử cách của tác giả. |
+| Đồ thị trong mã của tác giả có nút ENTRY và nút `v_modifier`; thân modifier được tách tại `_` và chèn quanh thân hàm. | Mã BSP_SC, mẫu `example/` | Khác quyết định "không đưa modifier vào đồ thị" của nhóm (mục A.9). Giữ quyết định của nhóm cho phần cốt lõi, thử cách của tác giả ở X-07. |
+| Công cụ trong mã của tác giả: solc-typed-ast (dựng AST), Slither và solc-select (CFG), NetworkX, DGL, InferCode (embedding token AST 100 chiều). Tree-LSTM: x = 100, h = 150, Adam lr 0,01; chia 80/10/10 theo thứ tự, không xáo trộn. | Mã BSP_SC | Lựa chọn công nghệ của nhóm (mục E.2) khác nhưng tương đương về chức năng. CFG bằng Slither là phương án dự phòng R3 và gần với cách của tác giả hơn. Nhóm vẫn chia theo nhóm hợp đồng (D-06), không chia theo thứ tự. |
+| Hàm `calculate_metrics()` trong `statement_encoder.py` của BSP_SC đếm nhầm FP và FN (bỏ sót bị tính là FP và ngược lại), nên Precision và Recall bị hoán đổi. | Đã kiểm tra trực tiếp mã nguồn | Không tái sử dụng hàm này. E-01 phải có test bắt được lỗi hoán đổi FP/FN. |
 
-Nơi P-01 phải kiểm tra, ghi kết quả kèm URL vào `docs/evidence-log.md`:
-
-- trang DOI/ScienceDirect, mục Data availability của toàn văn (qua thư viện trường nếu có quyền truy cập);
-- Semantic Scholar, OpenAlex, arXiv (kể cả khả năng tiêu đề khác);
-- GitHub, GitLab, Zenodo theo tên tác giả, "SS-GNN" và "security best practice" kèm "Solidity";
-- trang cá nhân của các tác giả;
-- nếu vẫn không thấy, gửi email hỏi tác giả liên hệ có tên trên trang bài báo.
+**Kết luận cho rubric:** chưa thấy mã nguồn SS-GNN công khai; BSP_SC chỉ là một phần pipeline, không chạy được nguyên trạng và chưa rõ là mã chính thức của bài báo; bộ dữ liệu thì công khai. Vì vậy nhóm theo nhánh "bài báo không có mã nguồn chia sẻ công khai" và **tận dụng bộ dữ liệu công khai**. Một số nguồn thứ cấp (bảng của Ressi và cộng sự) đánh dấu bài này là "có mã". Do đó P-01 phải **hỏi giảng viên xác nhận nhánh rubric** trước khi kết thúc chặng 0.
 
 ### A.7. Hướng triển khai chính
 
-**Hướng cơ sở:** theo nhánh "bài báo không có mã nguồn chia sẻ công khai" của `Project.md`: hiện thực các giai đoạn và kỹ thuật chính, kèm biện luận ưu và nhược điểm. Cụ thể, nhóm hiện thực cả ba trụ cột của bài báo ở quy mô nhỏ cho reentrancy:
+**Hướng chính:** theo nhánh "bài báo không có mã nguồn chia sẻ công khai" của `Project.md`: hiện thực các giai đoạn và kỹ thuật chính, kèm biện luận ưu và nhược điểm. Cụ thể, nhóm hiện thực cả ba trụ cột của bài báo ở quy mô nhỏ cho reentrancy:
 
-1. xây dữ liệu có nhãn câu lệnh bằng cách loại bỏ SBP;
+1. xây dữ liệu có nhãn câu lệnh bằng cách loại bỏ SBP, ưu tiên chạy trên mã nguồn hợp đồng của bộ dữ liệu công khai của tác giả;
 2. đồ thị mã trong đó mỗi nút CFG mang cây AST con của một câu lệnh;
 3. SS-GNN (theo cách hiểu của nhóm), kèm baseline, ablation, đánh giá và demo.
 
@@ -95,18 +105,20 @@ Mỗi trụ cột do một thành viên sở hữu và trình bày.
 
 **Lý do chọn:**
 
-- Hiện chưa xác minh được có mã nguồn công khai.
-- Hướng này không phụ thuộc vào tài nguyên của tác giả.
-- Nếu sau này tìm thấy mã, phần lớn sản phẩm vẫn dùng được: ánh xạ vị trí, bộ đánh giá, kiểm định nhãn, demo.
+- Không có mã mô hình để tái hiện, nhưng có dữ liệu.
+- Dùng cùng nguồn hợp đồng với tác giả giúp kết quả gần kịch bản của bài báo hơn. Nó cũng cho phép đối chiếu luật nhãn của nhóm với nhãn của tác giả (D-10).
+- Mã BSP_SC được dùng làm tài liệu tham khảo cho đặc tả (P-02, P-03), không sao chép làm sản phẩm.
 
-**Điều chỉnh có điều kiện sau P-01** (không lập kế hoạch thứ hai):
+**Điều chỉnh đã áp dụng ngay:** thêm việc D-10 (kiểm kê và đối chiếu bộ dữ liệu của tác giả) cho A; ưu tiên `sbp_dataset` trong D-01; thêm X-07 (thử cách gán nhãn và dựng đồ thị của tác giả) vào phần mở rộng. Cân bằng đã được kiểm tra lại ở mục D.
 
-| Kết quả xác minh | Điều chỉnh | Việc bị ảnh hưởng | Giữ cân bằng |
+**Điều chỉnh có điều kiện còn lại** (không lập kế hoạch thứ hai):
+
+| Kết quả về sau | Điều chỉnh | Việc bị ảnh hưởng | Giữ cân bằng |
 | --- | --- | --- | --- |
-| Không tìm thấy toàn văn, mã hay dữ liệu | Giữ nguyên kế hoạch | Không có | Không đổi |
-| Có toàn văn, không có mã | Cập nhật P-02, P-03, P-04 theo mô tả gốc trước khi sang chặng 2; đổi nhãn ĐX thành TL ở các chỗ khớp; nếu SBP, loại cạnh hay kiến trúc của bài báo khác đặc tả của nhóm thì sửa đặc tả và fixture | P-02, P-03, P-04, D-03, G-03, M-02 | Giữ phân công; tính lại điểm nếu phạm vi đổi và kiểm tra lại mục D |
-| Có dữ liệu công khai, không có mã | Dùng dữ liệu của tác giả làm nguồn bổ sung và để đối chiếu nhãn: thêm việc so khớp nhãn của nhóm với nhãn của tác giả (A làm, C review). D-03…D-05 vẫn làm vì đây là phần hiện thực phương pháp | D-01, D-06, D-08, E-04 | Khi thêm việc cho A, chuyển E-02 sang B hoặc C rồi kiểm tra lại mục D |
-| Có mã nguồn chạy được | Chuyển sang nhánh "tái hiện thí nghiệm" của rubric. A chạy pipeline dữ liệu của tác giả và giữ kiểm định nhãn (D-07, D-08). B chạy bộ dựng đồ thị của tác giả, giữ phần ánh xạ vị trí của G-01 cho demo. C tái hiện huấn luyện và bảng kết quả. Phần mở rộng X-02 (dữ liệu mới) hoặc X-05 (cải tiến) trở thành đường chính để lấy điểm xuất sắc | Chặng 2 đến chặng 5 | Lập lại bảng C và kiểm tra lại mục D trước khi chốt |
+| Giảng viên xác nhận nhánh "không có mã" | Giữ nguyên kế hoạch | Không có | Không đổi |
+| Có toàn văn (qua thư viện trường hoặc tác giả gửi) | Cập nhật P-02, P-03, P-04 theo mô tả gốc trước khi sang chặng 2; đổi nhãn NTC/ĐX thành TL ở các chỗ khớp; nếu SBP, loại cạnh hay kiến trúc khác đặc tả thì sửa đặc tả và fixture | P-02, P-03, P-04, D-03, G-03, M-02 | Giữ phân công; tính lại điểm nếu phạm vi đổi và kiểm tra lại mục D |
+| Giảng viên coi BSP_SC và sbp_dataset là "có mã nguồn công khai", hoặc tìm thấy mã SS-GNN chạy được | Chuyển sang nhánh "tái hiện thí nghiệm". A chạy pipeline dữ liệu của tác giả trên sbp_dataset và giữ kiểm định nhãn (D-07, D-08, D-10). B dựng lại phần đồ thị còn thiếu theo cách của tác giả và giữ ánh xạ vị trí của G-01 cho demo. C hiện thực phần GNN còn thiếu và tái hiện các bảng của tác giả trên dữ liệu đó. X-02 (dữ liệu mới) hoặc X-05 (cải tiến) trở thành đường chính để lấy điểm xuất sắc | Chặng 2 đến chặng 5 | Lập lại bảng C và kiểm tra lại mục D trước khi chốt |
+| Tệp dữ liệu của tác giả không tải được hoặc không dùng được | Quay về nguồn ứng viên khác ở D-01; bỏ D-10 và chuyển 3 điểm tương ứng thành việc kiểm tra tay thêm trong D-03 | D-01, D-10 | Không đổi người chính |
 
 ### A.8. Mục tiêu đầu vào – đầu ra
 
@@ -121,11 +133,11 @@ Mỗi trụ cột do một thành viên sở hữu và trình bày.
 
 **Phạm vi cốt lõi [ĐX]**
 
-1. **Lỗ hổng:** chỉ reentrancy. Đây là lựa chọn triển khai của nhóm. Bài báo có báo cáo kết quả reentrancy ở trang 5, nhưng toàn bộ phạm vi loại lỗ hổng của bài báo chưa được xác minh.
+1. **Lỗ hổng:** chỉ reentrancy. Đây là lựa chọn triển khai của nhóm. Bài báo có báo cáo kết quả reentrancy ở trang 5 [TL]. Theo nguồn thứ cấp, bài báo xét 7 loại lỗ hổng [NTC, mục A.6], nên đây là **phạm vi rút gọn**. Tràn số nằm ở phần mở rộng X-04; các loại còn lại ngoài phạm vi.
 2. **SBP cho reentrancy:**
    - **R1a**: modifier khóa chống gọi lại (kiểu `nonReentrant`). Tên modifier không đủ để kết luận; thân modifier phải có mẫu khóa.
    - **R1b**: khóa nội tuyến trong thân hàm (kiểm tra biến khóa, đặt khóa, mở khóa).
-3. **Quy tắc nhãn L1:** trong hàm đã loại SBP, câu lệnh chứa lời gọi ra ngoài hợp đồng được gán 1. Các câu lệnh khác của hàm đó, cùng mọi câu lệnh của hàm không có SBP, được gán 0 (neutral). **Neutral không có nghĩa là đã chứng minh an toàn; nhãn 1 không có nghĩa là chắc chắn khai thác được.**
+3. **Quy tắc nhãn L1:** trong hàm đã loại SBP, câu lệnh chứa lời gọi ra ngoài hợp đồng được gán 1. Các câu lệnh khác của hàm đó, cùng mọi câu lệnh của hàm không có SBP, được gán 0 (neutral). **Neutral không có nghĩa là đã chứng minh an toàn; nhãn 1 không có nghĩa là chắc chắn khai thác được.** Mẫu dữ liệu của tác giả đặt nhãn `nonReentrant` ở nút ảo `v_modifier`, không ở câu lệnh lời gọi [NTC]. L1 là lựa chọn của nhóm để chỉ ra được câu lệnh rủi ro cụ thể trong demo; D-10 đo mức khác biệt giữa hai cách.
 4. **Đồ thị cấp hàm:** nút câu lệnh và hai nút ảo ENTRY/EXIT; cạnh CFG; mỗi nút mang cây AST con đã chuẩn hóa token.
 5. **Mô hình:** SS-GNN theo cách hiểu của nhóm (Tree-LSTM → GNN → phân loại nút), hai biến thể loại bỏ thành phần và hai baseline không học (luật heuristic, Slither).
 6. **Đánh giá:** mức câu lệnh là chính; có thêm tập con "câu lệnh ứng viên" và mức hợp đồng, báo cáo riêng.
@@ -135,7 +147,7 @@ Mỗi trụ cột do một thành viên sở hữu và trình bày.
 
 **Quyết định thiết kế quan trọng [ĐX], ghi vào đặc tả và báo cáo**
 
-- **Modifier không được đưa vào đồ thị hàm.** Đồ thị chỉ chứa câu lệnh trong thân hàm; nút ENTRY không mang tên modifier. Hệ quả: với R1a, đồ thị của hàm gốc có khóa và hàm đã loại khóa là **giống hệt nhau**. Vì vậy hàm gốc có khóa không được đưa vào tập huấn luyện như mẫu neutral, để tránh cùng một đồ thị mang hai nhãn. Đây là hạn chế phải trình bày (mô hình không "nhìn thấy" khóa) và được minh họa trong demo.
+- **Modifier không được đưa vào đồ thị hàm.** Đồ thị chỉ chứa câu lệnh trong thân hàm; nút ENTRY không mang tên modifier. Hệ quả: với R1a, đồ thị của hàm gốc có khóa và hàm đã loại khóa là **giống hệt nhau**. Vì vậy hàm gốc có khóa không được đưa vào tập huấn luyện như mẫu neutral, để tránh cùng một đồ thị mang hai nhãn. Đây là hạn chế phải trình bày (mô hình không "nhìn thấy" khóa) và được minh họa trong demo. Mã và mẫu dữ liệu của tác giả làm khác: có nút ảo `v_modifier`, thân modifier được chèn quanh thân hàm [NTC]. Phần cốt lõi giữ cách đơn giản hơn; X-07 thử cách của tác giả.
 - **Chuẩn hóa định danh** do người dùng đặt thành token vai trò (biến trạng thái, biến cục bộ, tham số, hàm, hợp đồng). Mục đích là để mô hình không học thuộc tên như `locked` hay `_status` sót lại sau khi loại SBP.
 - **Nhãn đặt ở đúng nút câu lệnh** theo đặc tả đồ thị. Nếu lời gọi ra ngoài nằm trong điều kiện `if` hoặc trong `require(...)`, nút được gán nhãn là nút phần đầu của `if` hoặc câu lệnh `require` đó.
 - **Ghi nguồn neutral** cho từng hàm (`neutral_source`): hàm không có khóa nhưng nằm trong hợp đồng có dùng SBP, hay nằm trong hợp đồng không dùng SBP nào. Trường này dùng để phân tích nhiễu nhãn.
@@ -165,11 +177,11 @@ flowchart LR
   NB --> C3
   C3 --> I2(("I-02<br/>lát dữ liệu thật"))
   I1 --> I2
-  I2 --> C4["Chặng 4<br/>D-06, D-07, D-09, E-02, E-03, D-08"]
+  I2 --> C4["Chặng 4<br/>D-06, D-07, D-09, D-10, E-02, E-03, D-08"]
   C4 --> C5["Chặng 5<br/>E-04, E-05"]
   C5 --> C6["Chặng 6<br/>I-03, I-04"]
   C6 --> C7["Chặng 7<br/>R-01…R-06"]
-  C5 -.-> X["Mở rộng<br/>X-01…X-06"]
+  C5 -.-> X["Mở rộng<br/>X-01…X-07"]
 ```
 
 ### B.2. Mô tả từng chặng
@@ -180,7 +192,7 @@ flowchart LR
 | 1. Schema và mock | Cố định giao tiếp dữ liệu giữa các module để làm song song | P-02, P-03, P-04, P-05 | S-01, S-02, S-03 | 4 schema JSON, validator, mock đồ thị và dự đoán | Validator chấp nhận mẫu hợp lệ, từ chối mẫu sai; mock dùng được cho mô hình và bộ đánh giá |
 | 2. Module nền tảng (song song) | Mỗi nhánh xây phần lõi của mình trên fixture hoặc mock | Chặng 1 | Nhánh A: D-01, D-02. Nhánh B: G-01, G-02, G-03, E-01. Nhánh C: G-05, M-01…M-04, I-01 | Corpus, bộ biên dịch, bộ dựng đồ thị, mô hình, bộ đánh giá | **I-01 đạt**: một lệnh chạy được chuỗi mock → huấn luyện → dự đoán → chỉ số |
 | 3. Dữ liệu có nhãn và đồ thị thật | Tạo mẫu có nhãn từ SBP và đồ thị tương ứng | D-02, G-01, G-02 (G-03 cho G-04) | D-03, D-04, D-05, G-04, I-02 | Biến thể đã loại SBP, `samples`, `graphs` | **I-02 đạt**: lát dữ liệu thật nhỏ chạy hết chuỗi; khảo sát D-01 đạt ngưỡng dữ liệu ghi trong P-02 |
-| 4. Chia dữ liệu, kiểm định nhãn, baseline | Dữ liệu sạch, chia không rò rỉ; đo chất lượng nhãn; có baseline | I-02 | D-06, D-07, D-09, D-08, E-02, E-03 | Split manifest (đóng băng thành `data-v1`), báo cáo kiểm định nhãn, dự đoán của B0 và B1 | Kiểm tra rò rỉ đạt; manifest được gắn tag; B0 và B1 sinh dự đoán hợp lệ trên test |
+| 4. Chia dữ liệu, kiểm định nhãn, baseline | Dữ liệu sạch, chia không rò rỉ; đo chất lượng nhãn; có baseline | I-02 | D-06, D-07, D-09, D-10, D-08, E-02, E-03 | Split manifest (đóng băng thành `data-v1`), báo cáo kiểm định nhãn, báo cáo đối chiếu dữ liệu của tác giả, dự đoán của B0 và B1 | Kiểm tra rò rỉ đạt; manifest được gắn tag; B0 và B1 sinh dự đoán hợp lệ trên test |
 | 5. Thực nghiệm và phân tích | Kết quả chính, ablation, phân tích lỗi | Chặng 4 | E-04, E-05 | Registry kết quả, bảng chỉ số, báo cáo phân tích lỗi | Mọi số trong bảng truy được về một lần chạy; checkpoint chính được chốt |
 | 6. Demo và tái lập | Chứng minh luồng từ `.sol` đến câu lệnh nghi ngờ; người khác chạy lại được | E-04 (I-03 bắt đầu được sau I-01 với checkpoint mock) | I-03, I-04 | CLI demo, 5 mẫu demo, hướng dẫn chạy lại | Test demo đạt; một thành viên không viết mã chạy lại sạch ra đúng chỉ số |
 | 7. Báo cáo và thuyết trình | Minh chứng đủ rubric; mỗi người trình bày phần mình | Bản nháp từ đặc tả; bản cuối cần chặng 5–6 | R-01…R-06 | Báo cáo, slide, ngân hàng câu hỏi | Bảng đối chiếu rubric đầy đủ minh chứng; diễn tập đủ 3 người và demo |
@@ -210,8 +222,8 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 
 | Mã việc | Công việc và phạm vi cụ thể | Người chính | Người review | Phụ thuộc/đầu vào | Sản phẩm bàn giao | Tiêu chí hoàn thành | Điểm công sức |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| P-01 | Lập sổ căn cứ: bảng mọi thông tin về bài báo được dùng trong đặc tả và báo cáo, gắn nhãn TL (kèm trang) / ĐX / CXM; ghi kết quả xác minh nguồn công khai (mục A.6) kèm URL; bảng "bám theo bài báo" và "nhóm tự thiết kế"; quyết định hướng chính theo rubric; danh sách điểm cần cập nhật khi có toàn văn. | A | C | Không | `docs/evidence-log.md` | Mọi số liệu và khẳng định về bài báo trong 3 đặc tả có trang hoặc URL; người review đối chiếu ngẫu nhiên ≥5 trích dẫn với PDF và thấy khớp; mỗi mục CXM có người theo dõi | 2 |
-| P-02 | Đặc tả SBP và nhãn reentrancy: định nghĩa R1a (giải tham chiếu modifier, thân phải kiểm tra biến khóa trước `_`, đặt khóa trước và mở khóa sau `_`; theo dõi lời gọi hàm nội bộ 1–2 cấp cho kiểu modifier gọi hàm trợ giúp) và R1b (khóa nội tuyến); thao tác loại bỏ cho từng dạng; quy tắc L1 (các loại lời gọi ra ngoài: `call`, `call{value:}`, `.call.value()`, `send`, `transfer`, `delegatecall`, lời gọi hàm external trên biến kiểu contract/interface, danh sách hàm bọc như `sendValue`, `safeTransfer*`); định nghĩa neutral và `neutral_source`; các trường hợp loại trừ; ngưỡng dữ liệu tối thiểu để đi tiếp (đề xuất: ≥300 hàm có SBP và có lời gọi ra ngoài sau lọc trùng); ≥12 fixture có nhãn mong đợi. | A | B | P-05 (chỉ để biên dịch fixture) | `docs/specs/sbp-label-spec.md`; `tests/fixtures/sbp/*.sol` và `expected_labels.json` | Fixture gồm ca dương, ca âm và ca biên (lời gọi trong điều kiện `if`/`require`, câu lệnh nhiều dòng, modifier tên `nonReentrant` nhưng thân không khóa, khóa nội tuyến); mọi fixture biên dịch được với ≥2 phiên bản solc (0.4.x và 0.8.x hoặc lý do nếu không); B xác nhận đặc tả đủ để ánh xạ nhãn vào nút | 3 |
+| P-01 | Lập sổ căn cứ: bảng mọi thông tin về bài báo được dùng trong đặc tả và báo cáo, gắn nhãn TL (kèm trang) / NTC / ĐX / CXM; chép kết quả xác minh nguồn công khai (mục A.6) kèm URL; xin giảng viên xác nhận nhánh rubric; thử xin toàn văn qua thư viện trường hoặc email tác giả liên hệ; bảng "bám theo bài báo" và "nhóm tự thiết kế"; danh sách điểm cần cập nhật khi có toàn văn. | A | C | Không | `docs/evidence-log.md` | Mọi số liệu và khẳng định về bài báo trong 3 đặc tả có trang hoặc URL; người review đối chiếu ngẫu nhiên ≥5 trích dẫn với nguồn và thấy khớp; có ghi nhận ý kiến của giảng viên về nhánh rubric; mỗi mục CXM có người theo dõi | 2 |
+| P-02 | Đặc tả SBP và nhãn reentrancy: định nghĩa R1a (giải tham chiếu modifier, thân phải kiểm tra biến khóa trước `_`, đặt khóa trước và mở khóa sau `_`; theo dõi lời gọi hàm nội bộ 1–2 cấp cho kiểu modifier gọi hàm trợ giúp) và R1b (khóa nội tuyến); thao tác loại bỏ cho từng dạng; quy tắc L1 (các loại lời gọi ra ngoài: `call`, `call{value:}`, `.call.value()`, `send`, `transfer`, `delegatecall`, lời gọi hàm external trên biến kiểu contract/interface, danh sách hàm bọc như `sendValue`, `safeTransfer*`); định nghĩa neutral và `neutral_source`; các trường hợp loại trừ; ngưỡng dữ liệu tối thiểu để đi tiếp (đề xuất: ≥300 hàm có SBP và có lời gọi ra ngoài sau lọc trùng); bảng khác biệt giữa L1 và cách gán nhãn trong mẫu `example/` của sbp_dataset và mã BSP_SC (mục A.6); ≥12 fixture có nhãn mong đợi. | A | B | P-05 (chỉ để biên dịch fixture) | `docs/specs/sbp-label-spec.md`; `tests/fixtures/sbp/*.sol` và `expected_labels.json` | Fixture gồm ca dương, ca âm và ca biên (lời gọi trong điều kiện `if`/`require`, câu lệnh nhiều dòng, modifier tên `nonReentrant` nhưng thân không khóa, khóa nội tuyến); mọi fixture biên dịch được với ≥2 phiên bản solc (0.4.x và 0.8.x hoặc lý do nếu không); B xác nhận đặc tả đủ để ánh xạ nhãn vào nút | 3 |
 | P-03 | Đặc tả đồ thị mã: danh mục loại câu lệnh thành nút; nút điều khiển (`if`, `for`, `while`, `do-while`, `try`) chỉ giữ phần đầu (điều kiện, khởi tạo, cập nhật), thân là các nút riêng; nút ảo ENTRY/EXIT (không mang modifier); loại cạnh CFG (`seq`, `true`, `false`, `loop_back`, `break`, `continue`, và `return`/`revert`/`throw` → EXIT); quy tắc chuẩn hóa token AST (giữ `nodeType`, toán tử, `memberName`, hàm và biến dựng sẵn; định danh người dùng → vai trò); quy tắc span hiển thị; cấu trúc không hỗ trợ và cách xử lý (inline assembly thành nút mờ, `try/catch`, `unchecked`); ≥15 fixture có danh sách nút, cạnh, span viết tay. | B | C | P-05 (chỉ để biên dịch fixture) | `docs/specs/code-graph-spec.md`; `tests/fixtures/graph/*.sol` và `*.expected.json` | Mỗi loại câu lệnh trong danh mục có ≥1 fixture; có fixture cho câu lệnh nhiều dòng, chú thích Unicode, xuống dòng CRLF, `if`/`for` lồng nhau, `break`/`continue`, `return` giữa hàm; C xác nhận đủ để viết schema đồ thị và tensor hóa | 3 |
 | P-04 | Đặc tả mô hình và giao thức thí nghiệm: cách hiểu SS-GNN của nhóm (Tree-LSTM child-sum mã hóa cây AST con → vector gốc làm đặc trưng nút → K lớp GNN trên CFG → MLP phân loại), ghi rõ ĐX/CXM vì không có Fig. 11; biến thể B2 (trung bình embedding token + GNN) và B3 (Tree-LSTM, không dùng cạnh); baseline B0 (luật) và B1 (Slither); hàm mất mát có trọng số lớp; chọn ngưỡng trên validation; chỉ số và công thức; tập ứng viên; quy tắc tổng hợp cấp hợp đồng; số seed; quy tắc khóa tập test; ngưỡng gần trùng cho D-06; danh mục siêu tham số và miền tìm. | C | A | Không | `docs/specs/model-eval-protocol.md` | Mỗi chỉ số có công thức và đơn vị (câu lệnh hay hợp đồng); mỗi thí nghiệm ghi rõ cấu hình, tập dữ liệu và phép so sánh; không có ngưỡng mục tiêu lấy từ 91,40%/89,77%; A xác nhận B0 tạo được dự đoán theo cùng schema | 3 |
 | P-05 | Khung repository và môi trường: cấu trúc thư mục (mục E.1); `pyproject.toml` và tệp khóa phiên bản thư viện; cài nhiều phiên bản solc qua `py-solc-x`; `pytest`; `.gitignore` cho `data/` và `runs/`; mẫu PR có checklist; quy ước nhánh và review; kiểm kê cấu hình máy của 3 thành viên và phương án GPU miễn phí. | C | B | Không | Khung repo, `README.md` (cài đặt), `CONTRIBUTING.md`, `docs/compute-inventory.md` | B cài từ README trên máy của mình và chạy `pytest` thành công; biên dịch một fixture bằng 2 phiên bản solc thành công; lệnh chạy là lệnh Python, chạy được trên cả Windows và Linux | 2 |
@@ -228,7 +240,7 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 
 | Mã việc | Công việc và phạm vi cụ thể | Người chính | Người review | Phụ thuộc/đầu vào | Sản phẩm bàn giao | Tiêu chí hoàn thành | Điểm công sức |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| D-01 | Thu thập corpus và manifest: chọn ≥2 nguồn công khai (ứng viên [ĐX]: SmartBugs-wild, DISL; phải kiểm tra cách tải và giấy phép), tải về, ghi manifest (`contract_uid`, nguồn, mã định danh gốc, sha256, giấy phép, `pragma`); khảo sát nhanh bằng tìm kiếm văn bản số tệp có dấu hiệu R1a/R1b để quyết định đạt ngưỡng của P-02 hay phải bổ sung nguồn. | A | C | P-05, P-02 (mẫu tìm kiếm) | Script tải; `data/raw/` (không đưa vào Git); `data/manifest.csv`; `docs/reports/corpus-survey.md` | Không bản ghi nào thiếu sha256 hoặc nguồn; báo cáo khảo sát có số lượng theo nguồn và kết luận đi tiếp hay bổ sung theo ngưỡng; chạy lại script tải cho cùng manifest | 3 |
+| D-01 | Thu thập corpus và manifest: nguồn ưu tiên là mã nguồn hợp đồng trong `sbp_dataset` của nhóm tác giả (mục A.6; repo không có tệp giấy phép nên chỉ dùng cho học tập, ghi nguồn, không phát hành lại); thêm ≥1 nguồn công khai khác (ứng viên [ĐX]: SmartBugs-wild, DISL; phải kiểm tra cách tải và giấy phép); tải về, ghi manifest (`contract_uid`, nguồn, mã định danh gốc, sha256, giấy phép, `pragma`); khảo sát nhanh bằng tìm kiếm văn bản số tệp có dấu hiệu R1a/R1b để quyết định đạt ngưỡng của P-02 hay phải bổ sung nguồn. | A | C | P-05, P-02 (mẫu tìm kiếm) | Script tải; `data/raw/` (không đưa vào Git); `data/manifest.csv`; `docs/reports/corpus-survey.md` | Không bản ghi nào thiếu sha256 hoặc nguồn; báo cáo khảo sát có số lượng theo nguồn và kết luận đi tiếp hay bổ sung theo ngưỡng; chạy lại script tải cho cùng manifest | 3 |
 | D-02 | Bộ biên dịch hàng loạt: đọc `pragma` → chọn phiên bản solc phù hợp; biên dịch qua standard JSON để lấy AST compact; chạy nhiều tiến trình; cache theo sha256; log lỗi theo loại (cú pháp, import thiếu, phiên bản không hỗ trợ); thống kê tỷ lệ biên dịch theo phiên bản; API dùng chung `compile_file()` cho dữ liệu, kiểm tra biến thể và demo. | A | B | D-01, P-05 | `src/sbpvd/solidity/compile.py`; `data/compiled/`; `docs/reports/compile-stats.md` | Chạy lần hai dùng cache, không biên dịch lại; mọi tệp có trạng thái ok/lỗi kèm lý do; test: fixture 0.4.x và 0.8.x được biên dịch bằng đúng phiên bản | 5 |
 | G-01 | Nạp AST và chuẩn hóa giữa các phiên bản: lớp truy cập nút AST (duyệt cây, tra `referencedDeclaration`, đọc kiểu từ `typeDescriptions`); chuẩn hóa khác biệt giữa các phiên bản trong khoảng hỗ trợ (ví dụ `.call.value(x)()` kiểu cũ và `call{value: x}` kiểu mới); đổi `src` dạng "start:length:file" (đơn vị byte UTF-8) thành dòng–cột, xử lý CRLF; trích đoạn mã theo span. | B | A | P-03, P-05 | `src/sbpvd/solidity/ast_loader.py`, `srcmap.py`; test | Trên fixture của P-03 với ≥2 phiên bản solc: đoạn mã trích theo span trùng văn bản mong đợi, kể cả khi trước câu lệnh có ký tự Unicode và tệp dùng CRLF; A dùng được API để viết D-03 | 5 |
 | G-02 | Trích nút câu lệnh và cây AST con: duyệt thân hàm theo P-03; tạo nút cho từng câu lệnh (nút điều khiển chỉ chứa phần đầu); tuần tự hóa cây con (`types`, `values`, `parent`) với token đã chuẩn hóa; giới hạn độ sâu và kích thước cây theo cấu hình; hàm `enclosing_statement(src)` để D-05 gán nhãn đúng nút; tạo nút mờ cho cấu trúc không hỗ trợ. | B | C | G-01, S-02 | `src/sbpvd/graph/statements.py`; test | Trên mọi fixture của P-03, danh sách nút và span khớp `expected.json`; `enclosing_statement` trả đúng nút khi lời gọi nằm trong điều kiện `if` hoặc trong `require`; test tự động xác nhận không có định danh gốc của người dùng lọt vào cây | 5 |
@@ -238,7 +250,7 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 | M-02 | Lắp SS-GNN và biến thể: embedding → Tree-LSTM → vector gốc cây làm đặc trưng nút → K lớp GNN (loại lớp chọn qua cấu hình, dùng lớp có sẵn của PyG) → MLP; biến thể B2 và B3 bật bằng cờ cấu hình, cùng định dạng đầu ra. | C | B | M-01, G-05 | `src/sbpvd/models/ssgnn.py`; `configs/model/*.yaml` | Cả 3 cấu hình chạy forward và backward trên batch mock; in số tham số; người review đối chiếu cấu hình và xác nhận B2, B3 chỉ khác đúng thành phần cần loại bỏ | 5 |
 | M-03 | Huấn luyện và checkpoint: vòng lặp huấn luyện với hàm mất mát có trọng số lớp, bỏ qua nút ảo, dừng sớm theo F1 trên validation, chọn ngưỡng trên validation, cố định seed, ghi log mỗi epoch; checkpoint gồm trọng số, cấu hình, hash từ vựng, phiên bản schema, mã commit. | C | A | M-02, S-03 | `src/sbpvd/train/train.py`; `runs/<run_id>/` | Học thuộc được 1–2 đồ thị mock (dự đoán đúng toàn bộ nút); lưu → nạp → dự đoán trên batch cố định cho kết quả giống hệt; nạp checkpoint với từ vựng khác hash thì báo lỗi rõ ràng | 5 |
 | M-04 | Dự đoán: từ checkpoint và tệp đồ thị sinh `predictions.jsonl` theo `prediction-v1` (span, điểm, nhãn theo ngưỡng đã lưu). | C | B | M-03, S-03 | `src/sbpvd/train/predict.py` | Đầu ra qua validator; số dòng bằng số nút không ảo; chạy hai lần cho kết quả giống hệt | 2 |
-| E-01 | Bộ đánh giá: từ dự đoán và nhãn gốc tính Precision/Recall/F1 của lớp dương, PR-AUC, ma trận nhầm lẫn ở mức câu lệnh; cùng các chỉ số trên tập ứng viên (câu lệnh có lời gọi ra ngoài); chỉ số mức hợp đồng theo quy tắc của P-04; xuất `metrics.json` và bảng Markdown. | B | A | S-03, P-04 | `src/sbpvd/eval/metrics.py`; test | Test trên ví dụ nhỏ tính tay cho đúng từng chỉ số; khi không có dự đoán dương thì không lỗi chia cho 0 và báo rõ; dùng chung được cho B0, B1 và mô hình | 3 |
+| E-01 | Bộ đánh giá: từ dự đoán và nhãn gốc tính Precision/Recall/F1 của lớp dương, PR-AUC, ma trận nhầm lẫn ở mức câu lệnh; cùng các chỉ số trên tập ứng viên (câu lệnh có lời gọi ra ngoài); chỉ số mức hợp đồng theo quy tắc của P-04; xuất `metrics.json` và bảng Markdown. | B | A | S-03, P-04 | `src/sbpvd/eval/metrics.py`; test | Test trên ví dụ nhỏ tính tay cho đúng từng chỉ số, có ca bắt được lỗi hoán đổi FP/FN (lỗi đã thấy trong mã BSP_SC, mục A.6); khi không có dự đoán dương thì không lỗi chia cho 0 và báo rõ; dùng chung được cho B0, B1 và mô hình | 3 |
 | I-01 | Điểm tích hợp 1 (mock): mock đồ thị (S-02) → G-05 → M-03 huấn luyện ngắn → M-04 → E-01; một lệnh chạy smoke trên mock và một test tích hợp; lưu một checkpoint mock cho I-03 dùng tạm. | C | B | S-02, G-05, M-03, M-04, E-01 | `python -m sbpvd.scripts.smoke_mock`; test tích hợp; checkpoint mock | Một lệnh chạy từ đầu đến `metrics.json` hợp lệ; test tích hợp nằm trong bộ `pytest` | 2 |
 
 ### C.3. Chặng 3 — Dữ liệu có nhãn và đồ thị thật [CỐT LÕI]
@@ -248,7 +260,7 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 | D-03 | Nhận diện SBP trên AST: R1a (giải tham chiếu modifier → kiểm tra mẫu khóa trong thân modifier hoặc trong hàm trợ giúp nó gọi; hỗ trợ dạng thư viện phổ biến và dạng tự viết) và R1b (trong thân hàm: `require`/`if` kiểm tra biến khóa, gán khóa, mở khóa); xuất danh sách hàm được bảo vệ kèm `src` của cơ chế bảo vệ. | A | B | G-01, D-02, P-02 | `src/sbpvd/data/sbp_detect.py`; `data/sbp_hits.jsonl` | Đúng 100% trên fixture của P-02, gồm ca "tên giống nhưng không khóa" phải bị từ chối; kiểm tra tay 30 hàm được nhận và 30 hàm có từ khóa nhưng bị từ chối trên corpus thật, ghi tỷ lệ đúng vào báo cáo | 5 |
 | D-04 | Loại bỏ SBP và kiểm chứng biến thể: xóa theo span byte (lời gọi modifier với R1a; các câu lệnh khóa với R1b); biên dịch lại bằng D-02; so sánh AST của hàm trước và sau (chỉ được khác đúng phần đã xóa); loại biến thể không biên dịch được và ghi lý do. | A | B | D-03, D-02 | `src/sbpvd/data/sbp_strip.py`; `data/variants/`; log | 100% biến thể được giữ lại biên dịch được; so sánh AST tự động không thấy thay đổi ngoài phần đã xóa; có test fixture cho cả R1a và R1b; có thống kê tỷ lệ biến thể bị loại theo lý do | 5 |
 | D-05 | Gán nhãn câu lệnh và xuất `samples`: bộ nhận diện lời gọi ra ngoài (dùng thông tin kiểu trong AST); áp quy tắc L1 cho hàm đã loại SBP; gán neutral cho hàm không có SBP, ghi `neutral_source`; dùng `enclosing_statement` của G-02 để nhãn rơi đúng nút; ghi `call_kind` cho từng nhãn dương; xuất theo `sample-v1`. | A | C | D-04, G-02, S-01 | `src/sbpvd/data/label.py`; `data/samples/*.jsonl` | 100% bản ghi qua validator; nhãn khớp mong đợi trên fixture của P-02; không hàm neutral nào có nhãn dương; mỗi nhãn dương ánh xạ đúng một nút (kiểm tra bằng G-02) | 5 |
-| G-04 | Xuất đồ thị cho toàn bộ dữ liệu và ghép nhãn: chạy G-02 và G-03 cho mọi mẫu; ghép nhãn theo span nút; nút ảo `label = -1`; ghi `skipped.jsonl` kèm lý do; thống kê số nút, số cạnh, độ sâu cây. | B | A | G-03, D-05, S-01, S-02 | `src/sbpvd/graph/export.py`; `data/graphs/*.jsonl`; `docs/reports/graph-stats.md` | 100% đồ thị qua validator; tổng nhãn dương trong `graphs` bằng tổng nhãn dương trong `samples`, trừ các mẫu bị bỏ đã ghi lý do; có báo cáo tỷ lệ hàm bị bỏ theo lý do | 3 |
+| G-04 | Xuất đồ thị cho toàn bộ dữ liệu và ghép nhãn: chạy G-02 và G-03 cho mọi mẫu; ghép nhãn theo span nút; nút ảo `label = -1`; ghi `skipped.jsonl` kèm lý do; thống kê số nút, số cạnh, độ sâu cây. | B | C | G-03, D-05, S-01, S-02 | `src/sbpvd/graph/export.py`; `data/graphs/*.jsonl`; `docs/reports/graph-stats.md` | 100% đồ thị qua validator; tổng nhãn dương trong `graphs` bằng tổng nhãn dương trong `samples`, trừ các mẫu bị bỏ đã ghi lý do; có báo cáo tỷ lệ hàm bị bỏ theo lý do | 3 |
 | I-02 | Điểm tích hợp 2 (lát dữ liệu thật nhỏ): một lát nhỏ hợp đồng thật đi qua D-02 → D-05 → G-04 → G-05 → M-03 → M-04 → E-01 với cách chia tạm (chỉ để kiểm tra luồng, không dùng trong báo cáo); ghi mọi lỗi giao tiếp tìm được và giao cho đúng chủ module. | A | B | D-05, G-04, G-05, M-04, E-01 | `python -m sbpvd.scripts.smoke_real`; `docs/reports/integration-2.md` | Một lệnh chạy hết chuỗi trên lát nhỏ; mọi lỗi phát hiện có issue gán cho chủ module và đã được đóng hoặc có cách xử lý ghi rõ | 3 |
 
 ### C.4. Chặng 4 — Chia dữ liệu, kiểm định nhãn, baseline [CỐT LÕI]
@@ -258,6 +270,7 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 | D-06 | Lọc trùng, gom nhóm và chia tập: trùng tuyệt đối (hash mã nguồn đã bỏ chú thích và khoảng trắng); trùng hàm (hash chuỗi token AST chuẩn hóa lấy từ `graphs`, chỉ giữ một bản, xử lý mã thư viện lặp lại giữa nhiều hợp đồng); gần trùng cấp hợp đồng (MinHash/LSH, ngưỡng theo P-04); `group_id` gom hợp đồng gốc, mọi biến thể của nó và cụm gần trùng; chia train/validation/test theo nhóm, phân tầng theo có/không nhãn dương, seed cố định; split manifest; gắn tag `data-v1`. | C | A | G-04, D-05, D-01 | `src/sbpvd/data/dedup_split.py`; `data/splits/manifest.json`; `docs/reports/split-report.md` | Test tự động: không `group_id` nào nằm ở hơn một tập; không hash hàm nào nằm ở hơn một tập; kiểm tra gần trùng chéo tập dưới ngưỡng; báo cáo tỷ lệ lớp từng tập; chạy lại cùng seed cho manifest giống hệt | 3 |
 | D-07 | Kiểm tra thủ công nhãn, lượt 1, và giao thức: hướng dẫn chấm; phân loại kết quả (đúng; lời gọi có nhãn nhưng không khai thác được; không phải lời gọi liên quan; neutral nhưng nghi có lỗ hổng; lỗi ánh xạ vị trí); lấy mẫu phân tầng từ tập test (đề xuất: 75 câu lệnh nhãn dương và 75 câu lệnh neutral có lời gọi ra ngoài); chấm lượt 1; tính tỷ lệ nhãn đúng và Cohen's kappa với D-09; phân xử bất đồng. Người chấm không phải người viết luật nhãn, để giữ tính độc lập. | C | A | D-06, D-05 | `docs/specs/audit-protocol.md`; `data/audit/audit_1.csv`; `docs/reports/label-audit.md` | Đủ cỡ mẫu theo giao thức; tỷ lệ đúng và kappa có khoảng tin cậy; mọi bất đồng được phân xử và ghi lý do; kết quả không được dùng để chọn siêu tham số hay ngưỡng | 5 |
 | D-09 | Chấm độc lập lượt 2: chấm cùng mẫu của D-07 theo giao thức, không xem kết quả lượt 1; tham gia phân xử bất đồng. | B | A | D-07 (giao thức và danh sách mẫu) | `data/audit/audit_2.csv` | Chấm đủ 100% mẫu, không ô trống; mọi mẫu "không chắc" có ghi chú | 2 |
+| D-10 | Kiểm kê và đối chiếu bộ dữ liệu của tác giả: tải `sbp_dataset_src_6K.tar.gz` vào thư mục riêng và chỉ đọc, không chạy mã trong đó; kiểm kê nội dung (chỉ mã nguồn hay có cả mẫu đã gán nhãn), số hợp đồng, phân bố loại SBP, phiên bản solc; nếu có nhãn, so khớp với nhãn L1 của nhóm trên các hàm trùng (tỷ lệ trùng, các dạng lệch, đặc biệt nhãn `nonReentrant` ở nút `v_modifier` so với nhãn ở câu lệnh lời gọi); ghi giới hạn so sánh. | A | C | D-01, D-05 | `docs/reports/author-dataset.md`; script kiểm kê | Báo cáo trả lời được tệp chứa gì và có bao nhiêu hợp đồng; nếu có nhãn thì có bảng đối chiếu sinh từ script; mọi khác biệt được xếp vào một dạng lệch đã định nghĩa; nếu không có nhãn thì ghi rõ và chỉ báo cáo kiểm kê | 3 |
 | D-08 | Thống kê dữ liệu và phân tích xung đột nhãn: số hợp đồng, hàm, câu lệnh theo tập; tỷ lệ lớp; phân bố `call_kind`, `neutral_source`, phiên bản solc, độ dài; tỷ lệ câu lệnh neutral có cùng dạng lời gọi với câu lệnh nhãn dương; chạy Slither (dùng bộ chạy của E-03) trên một mẫu hàm neutral để ước lượng phần neutral có thể là lỗ hổng; so sánh với quy mô của bài báo chỉ ở mức mô tả. | A | C | D-06, D-07, D-09, E-03 | `docs/reports/data-stats.md`; script sinh bảng | Mọi bảng sinh lại được bằng script từ manifest cố định; số liệu khớp manifest (test đếm); có mục "hạn chế nhãn" có số liệu minh chứng, nêu rõ neutral không đồng nghĩa an toàn và loại SBP không đồng nghĩa chắc chắn khai thác được | 3 |
 | E-02 | Baseline B0 không học: (a) đánh dấu mọi câu lệnh có lời gọi ra ngoài (dùng bộ nhận diện của D-05); (b) chỉ đánh dấu khi có đường đi trên CFG từ lời gọi tới một câu lệnh ghi biến trạng thái; xuất `prediction-v1`. | A | C | G-04, D-05, S-03 | `src/sbpvd/eval/heuristic_baseline.py` | Đúng kết quả mong đợi trên fixture; đầu ra qua validator và chạy được qua E-01 | 3 |
 | E-03 | Baseline B1 Slither: chạy các detector reentrancy của Slither trên hợp đồng thuộc test với đúng phiên bản solc; ánh xạ dòng trong cảnh báo về nút theo phần giao của span; hợp đồng làm Slither lỗi được ghi lại và loại khỏi phép so sánh kèm chú thích; xuất `prediction-v1`; ghi phiên bản Slither. Cung cấp bộ chạy cho D-08. | B | A | D-06, G-04, S-03 | `src/sbpvd/eval/slither_baseline.py`; `runs/slither-*/` | Đầu ra qua validator; báo cáo tỷ lệ hợp đồng Slither chạy được; kiểm tra tay 10 cảnh báo thấy ánh xạ đúng nút | 3 |
@@ -281,7 +294,7 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 | Mã việc | Công việc và phạm vi cụ thể | Người chính | Người review | Phụ thuộc/đầu vào | Sản phẩm bàn giao | Tiêu chí hoàn thành | Điểm công sức |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | R-04 | Phần bối cảnh và bài toán (tiêu chí 1 điểm): hợp đồng thông minh, reentrancy và sự cố theDAO [TL, trang 2], lý do cần phát hiện ở mức câu lệnh, hai thách thức của bài báo [TL, trang 3], phát biểu bài toán phân loại nút, đầu vào–đầu ra; slide tương ứng. | A | C | P-01 | `report/01-boi-canh.md`; slide phần 1 | Mỗi khẳng định về bài báo có số trang; người review xác nhận không có ý ĐX nào được trình bày như TL | 2 |
-| R-01 | Phần phương pháp xây dữ liệu dựa trên SBP, kết quả dữ liệu, kiểm định nhãn và hạn chế của dữ liệu; sơ đồ pipeline dữ liệu do nhóm vẽ (ghi "dựng theo mô tả ở trang 2–3"); slide và phần trình bày của A. | A | C | D-08, E-02 | `report/02-du-lieu-sbp.md`; `report/diagrams/`; slide phần 2 | Có ví dụ mã trước và sau khi loại SBP lấy từ dữ liệu thật; mọi số liệu lấy từ `data-stats.md` và `label-audit.md`; phần hạn chế có ≥3 điểm kèm số liệu minh chứng | 3 |
+| R-01 | Phần phương pháp xây dữ liệu dựa trên SBP, kết quả dữ liệu, kiểm định nhãn và hạn chế của dữ liệu; sơ đồ pipeline dữ liệu do nhóm vẽ (ghi "dựng theo mô tả ở trang 2–3"); slide và phần trình bày của A. | A | C | D-08, D-10, E-02 | `report/02-du-lieu-sbp.md`; `report/diagrams/`; slide phần 2 | Có ví dụ mã trước và sau khi loại SBP lấy từ dữ liệu thật; mọi số liệu lấy từ `data-stats.md` và `label-audit.md`; phần hạn chế có ≥3 điểm kèm số liệu minh chứng | 3 |
 | R-02 | Phần biểu diễn mã, demo, baseline Slither và phân tích lỗi; sơ đồ đồ thị "AST trong nút CFG" do nhóm vẽ từ một fixture thật; slide; kịch bản demo trực tiếp và phương án dự phòng (ảnh chụp hoặc bản ghi đầu ra). | B | A | G-04, I-03, E-03, E-05 | `report/03-bieu-dien-ma-demo.md`; slide phần 3 | Sơ đồ khớp đầu ra G-04 của fixture minh họa; kịch bản demo chạy được theo `demo-guide.md` | 3 |
 | R-03 | Phần mô hình SS-GNN (cách hiểu của nhóm, ghi rõ ĐX/CXM), thực nghiệm, bảng kết quả; thảo luận vai trò của Tree-LSTM (SS-GNN so với B2) và của ngữ cảnh đồ thị (so với B3); so sánh với B0, B1; giải thích vì sao không so trực tiếp với 91,40%/89,77%; sơ đồ kiến trúc do nhóm vẽ; slide. | C | B | E-04 | `report/04-mo-hinh-thuc-nghiem.md`; slide phần 4 | Mọi số trong bảng truy được về registry; có mục ưu và nhược điểm của phương pháp gắn với kết quả thực nghiệm | 3 |
 | R-05 | Biên tập báo cáo tổng: ghép các phần, thống nhất thuật ngữ, bảng đối chiếu rubric 1-3-5-1 với minh chứng, bảng đóng góp của từng thành viên (lấy từ mục D), danh mục nguồn, rà nhãn TL/ĐX/CXM. | A | B | R-01, R-02, R-03, R-04, E-05 | `report/bao-cao.md` và bản xuất PDF | Mỗi tiêu chí rubric có ≥1 minh chứng dẫn tới tệp hoặc kết quả cụ thể; không mục CXM nào bị trình bày như TL; B và C xác nhận nội dung phần của mình | 2 |
@@ -289,7 +302,7 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 
 ### C.8. Phần mở rộng [MỞ RỘNG — tùy chọn]
 
-Điều kiện bắt đầu: E-04 đã xong **và** mọi việc cốt lõi do chính người đó sở hữu đã đạt tiêu chí hoàn thành. Điểm mở rộng tính riêng, không dùng để bù phần cốt lõi. Thứ tự ưu tiên theo giá trị với điểm xuất sắc: X-01, X-02, rồi X-03, X-05, rồi X-04, X-06.
+Điều kiện bắt đầu: E-04 đã xong **và** mọi việc cốt lõi do chính người đó sở hữu đã đạt tiêu chí hoàn thành. Điểm mở rộng tính riêng, không dùng để bù phần cốt lõi. Thứ tự ưu tiên theo giá trị với điểm xuất sắc: X-01, X-07, X-02, rồi X-03, X-05, rồi X-04, X-06.
 
 | Mã việc | Công việc và phạm vi cụ thể | Người chính | Người review | Phụ thuộc/đầu vào | Sản phẩm bàn giao | Tiêu chí hoàn thành | Điểm công sức |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -298,7 +311,8 @@ Quy ước chung: mỗi việc làm trên một nhánh Git riêng mang mã việ
 | X-03 | SBP thứ hai cho reentrancy, mẫu checks-effects-interactions: nhận diện hàm cập nhật trạng thái trước lời gọi ra ngoài; biến đổi đảo thứ tự để tạo biến thể; kiểm chứng biên dịch; đo tác động lên dữ liệu và mô hình. | B | A | E-04, G-03, D-04 | Mã nhận diện và biến đổi; báo cáo tác động | Test fixture cho biến đổi; biến thể biên dịch được; so sánh kết quả có và không có dữ liệu X-03 trên cùng tập test | 5 |
 | X-04 | Loại lỗ hổng thứ hai: tràn số nguyên với SBP SafeMath (chỉ solc < 0.8): đổi `a.add(b)` thành `a + b`, gán nhãn câu lệnh, huấn luyện mô hình riêng hoặc đa lớp. | A | C | E-04, D-05 | Mã gán nhãn mở rộng; bảng kết quả | Fixture đúng 100%; chỉ số báo cáo riêng cho loại lỗ hổng mới | 5 |
 | X-05 | Bổ sung cạnh phụ thuộc dữ liệu (def-use giữa câu lệnh) vào đồ thị và chạy thí nghiệm loại bỏ. | C | B | E-04, G-03 | Mã dựng cạnh; bảng ablation | Fixture có cạnh def-use mong đợi; so sánh có và không có cạnh trên cùng tập test | 5 |
-| X-06 | Giao diện web đơn giản (Streamlit hoặc Gradio) bọc CLI của I-03. | B | C | I-03 | `src/sbpvd/demo/webapp.py` | Chạy 5 mẫu demo cho cùng kết quả với CLI | 2 |
+| X-06 | Giao diện web đơn giản (Streamlit hoặc Gradio) bọc CLI của I-03. | A | B | I-03 | `src/sbpvd/demo/webapp.py` | Chạy 5 mẫu demo cho cùng kết quả với CLI | 2 |
+| X-07 | Thử cách gán nhãn và dựng đồ thị của tác giả [NTC]: thêm nút ảo `v_modifier`, chèn thân modifier quanh thân hàm, gán nhãn `nonReentrant` tại `v_modifier`; huấn luyện lại và so sánh với cách cốt lõi (L1, không đưa modifier vào đồ thị) trên cùng nguồn hợp đồng. | B | C | E-04, G-03, D-10 | Cấu hình đồ thị và nhãn thay thế; bảng so sánh | Fixture có nút `v_modifier` và cạnh mong đợi; so sánh dùng cùng giao thức như E-04; nêu rõ hai cách đo chỉ số trên hai đơn vị nhãn khác nhau | 5 |
 
 ---
 
@@ -324,13 +338,13 @@ Mỗi người sở hữu và trình bày **một trụ cột phương pháp** c
 
 **Thành viên A — trụ cột "xây dữ liệu dựa trên SBP"**
 
-- **Sở hữu (14 việc, 46 điểm):** P-01, P-02, S-01, D-01, D-02, D-03, D-04, D-05, I-02, E-02, D-08, R-04, R-01, R-05.
-- **Review (13 việc, 13 điểm review):** P-04, G-01, G-03, G-04, M-03, E-01, D-06, D-07, D-09, E-03, I-03, I-04, R-02.
+- **Sở hữu (15 việc, 49 điểm):** P-01, P-02, S-01, D-01, D-02, D-03, D-04, D-05, I-02, D-10, E-02, D-08, R-04, R-01, R-05.
+- **Review (12 việc, 12 điểm review):** P-04, G-01, G-03, M-03, E-01, D-06, D-07, D-09, E-03, I-03, I-04, R-02.
 - **Nghiên cứu:** sổ căn cứ và đối chiếu nguồn (P-01); đặc tả SBP và luật nhãn (P-02).
 - **Sản phẩm kỹ thuật:** bộ biên dịch hàng loạt dùng chung (D-02); bộ nhận diện và loại bỏ SBP (D-03, D-04); bộ nhận diện lời gọi ra ngoài và gán nhãn (D-05); baseline luật B0 (E-02).
-- **Đánh giá:** fixture SBP; kiểm tra tay 60 hàm ở D-03; chạy tích hợp lát dữ liệu thật (I-02); phân tích xung đột nhãn (D-08).
+- **Đánh giá:** fixture SBP; kiểm tra tay 60 hàm ở D-03; chạy tích hợp lát dữ liệu thật (I-02); đối chiếu với bộ dữ liệu của tác giả (D-10); phân tích xung đột nhãn (D-08).
 - **Báo cáo và thuyết trình:** bối cảnh bài toán (R-04), phương pháp dữ liệu và hạn chế nhãn (R-01), biên tập báo cáo và bảng đối chiếu rubric (R-05). Trình bày phần 1 và 2 của slide.
-- **Gửi đi:** `compile_file()` → B; `samples` → B, C; dự đoán B0 → C; `data-stats.md` → R-05.
+- **Gửi đi:** `compile_file()` → B; `samples` → B, C; dự đoán B0 → C; `data-stats.md` và `author-dataset.md` → R-05.
 - **Nhận về:** API AST và `enclosing_statement` (B); `graphs` (B); split manifest (C); kết quả kiểm định nhãn (C, B); bộ chạy Slither (B); G-05, M-04 (C) và E-01 (B) cho I-02.
 
 **Thành viên B — trụ cột "đồ thị mã: cây AST trong nút CFG"**
@@ -347,7 +361,7 @@ Mỗi người sở hữu và trình bày **một trụ cột phương pháp** c
 **Thành viên C — trụ cột "mô hình SS-GNN"**
 
 - **Sở hữu (14 việc, 48 điểm):** P-04, P-05, S-03, G-05, M-01, M-02, M-03, M-04, I-01, D-06, D-07, E-04, I-04, R-03.
-- **Review (12 việc, 9 điểm review):** P-01, P-03, S-02, D-01, G-02, D-05, D-08, E-02, E-05, R-04, R-01, R-06.
+- **Review (14 việc, 11 điểm review):** P-01, P-03, S-02, D-01, G-02, D-05, G-04, D-10, D-08, E-02, E-05, R-04, R-01, R-06.
 - **Nghiên cứu:** đặc tả mô hình và giao thức thí nghiệm (P-04).
 - **Sản phẩm kỹ thuật:** khung repo và môi trường (P-05); từ vựng và tensor hóa (G-05); Tree-LSTM (M-01); SS-GNN và biến thể (M-02); huấn luyện, checkpoint, dự đoán (M-03, M-04); lọc trùng và chia tập (D-06).
 - **Đánh giá:** kiểm định nhãn lượt 1 và tính kappa (D-07); thực nghiệm chính (E-04); tích hợp mock (I-01); tái lập (I-04).
@@ -359,16 +373,16 @@ Mỗi người sở hữu và trình bày **một trụ cột phương pháp** c
 
 | Thành viên | Số việc sở hữu | Điểm người chính | Tỷ trọng người chính | Điểm review | Tổng điểm | Tỷ trọng tổng |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| A | 14 | 46 | 32,4% | 13 | 59 | 33,9% |
-| B | 13 | 48 | 33,8% | 10 | 58 | 33,3% |
-| C | 14 | 48 | 33,8% | 9 | 57 | 32,8% |
-| **Tổng** | **41** | **142** | 100% | **32** | **174** | 100% |
+| A | 15 | 49 | 33,8% | 12 | 61 | 34,3% |
+| B | 13 | 48 | 33,1% | 10 | 58 | 32,6% |
+| C | 14 | 48 | 33,1% | 11 | 59 | 33,1% |
+| **Tổng** | **42** | **145** | 100% | **33** | **178** | 100% |
 
 Phân rã điểm người chính theo loại công việc:
 
 | Thành viên | Đặc tả, hạ tầng | Hiện thực kỹ thuật | Đánh giá, kiểm định | Tích hợp, demo | Báo cáo, thuyết trình | Tổng |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| A | 7 (P-01, P-02, S-01) | 23 (D-01…D-05) | 6 (D-08, E-02) | 3 (I-02) | 7 (R-04, R-01, R-05) | 46 |
+| A | 7 (P-01, P-02, S-01) | 23 (D-01…D-05) | 9 (D-08, D-10, E-02) | 3 (I-02) | 7 (R-04, R-01, R-05) | 49 |
 | B | 6 (P-03, S-02) | 21 (G-01…G-04) | 11 (E-01, E-03, E-05, D-09) | 5 (I-03) | 5 (R-02, R-06) | 48 |
 | C | 7 (P-04, P-05, S-03) | 25 (G-05, M-01…M-04, D-06) | 8 (D-07, E-04) | 5 (I-01, I-04) | 3 (R-03) | 48 |
 
@@ -376,7 +390,7 @@ Phân rã điểm người chính theo loại công việc:
 
 | Thành viên | Việc kỹ thuật ≥5 điểm | Tổng điểm các việc đó | Rủi ro chính phải xử lý | Kiến thức phải nắm sâu để trình bày |
 | --- | --- | ---: | --- | --- |
-| A | D-02, D-03, D-04, D-05 | 20 | R1, R2, R4 (luật nhãn), R9 | Ngữ nghĩa Solidity, cơ chế reentrancy, SBP, trình biên dịch nhiều phiên bản |
+| A | D-02, D-03, D-04, D-05 | 20 | R1, R2, R4 (luật nhãn), R9, R11 | Ngữ nghĩa Solidity, cơ chế reentrancy, SBP, trình biên dịch nhiều phiên bản |
 | B | G-01, G-02, G-03 (8), I-03 | 23 | R3, R10 | AST của solc, xây CFG, ánh xạ byte → dòng–cột |
 | C | G-05, M-01, M-02, M-03 | 20 | R4 (kiểm định), R5, R6, R7, R8 | Tree-LSTM, GNN, huấn luyện trên dữ liệu lệch lớp, chống rò rỉ |
 
@@ -394,16 +408,17 @@ B có tổng điểm việc khó cao hơn một chút vì G-03 là việc bất 
 3. **Đánh giá không dồn cho người làm mô hình:** bộ tính chỉ số (E-01), baseline Slither (E-03) và phân tích lỗi (E-05) thuộc B; baseline luật (E-02) thuộc A; C chỉ chạy thực nghiệm (E-04).
 4. **Tích hợp chia cho cả ba người:** I-01 (C), I-02 (A), I-03 (B), I-04 (C, người chạy lại sạch là A). Lỗi tích hợp được trả về chủ module (mục E.5).
 5. **Mã mô hình không là "hộp đen":** C sở hữu mã mô hình, nhưng A và B đều có module kỹ thuật lớn (pipeline SBP, CFG), không ai chỉ làm tài liệu hay giao diện. B review M-01, M-02; A review M-03, nên ít nhất hai người đọc và chạy được mã mô hình.
+6. **Sau khi xác minh có bộ dữ liệu công khai (mục A.6):** thêm D-10 (3 điểm) cho A, người có tổng điểm người chính thấp nhất lúc đó (46). Đồng thời chuyển review G-04 từ A sang C (C là người dùng `graphs`) để giảm tải review của A. Kết quả: 49/48/48 điểm người chính, 61/58/59 khi cộng review.
 
 ### D.6. Phần mở rộng, tính riêng
 
 | Thành viên | Việc mở rộng sở hữu | Điểm người chính | Điểm review mở rộng |
 | --- | --- | ---: | ---: |
-| A | X-02 (3), X-04 (5) | 8 | 1 (X-03) |
-| B | X-03 (5), X-06 (2) | 7 | 2 (X-01, X-05) |
-| C | X-01 (3), X-05 (5) | 8 | 2 (X-02, X-04) |
+| A | X-02 (3), X-04 (5), X-06 (2) | 10 | 1 (X-03) |
+| B | X-03 (5), X-07 (5) | 10 | 2 (X-01, X-05) |
+| C | X-01 (3), X-05 (5) | 8 | 3 (X-02, X-04, X-07) |
 
-Phần mở rộng không tính vào bảng D.3. Nếu nhóm bỏ toàn bộ phần mở rộng, phần cốt lõi vẫn chia 32,4% / 33,8% / 33,8%.
+Phần mở rộng không tính vào bảng D.3. Nếu nhóm bỏ toàn bộ phần mở rộng, phần cốt lõi vẫn chia 33,8% / 33,1% / 33,1%.
 
 ---
 
@@ -441,7 +456,7 @@ Mọi lệnh chạy là `python -m sbpvd...` để chạy giống nhau trên Win
 
 ### E.2. Công nghệ đề xuất [ĐX]
 
-Đây là lựa chọn của nhóm, **không** phải công nghệ tác giả đã xác nhận sử dụng.
+Đây là lựa chọn của nhóm, **không** phải công nghệ tác giả đã xác nhận sử dụng trong bài báo. Để tham khảo, mã BSP_SC của nhóm tác giả dùng solc-typed-ast, Slither với solc-select, NetworkX, DGL và InferCode [NTC, mục A.6]. Nhóm chọn bộ công cụ chỉ dùng Python và PyG để cả 3 người cùng đọc được mã của nhau; chức năng tương đương.
 
 | Thành phần | Lựa chọn | Lý do ngắn | Tái sử dụng hay tự viết |
 | --- | --- | --- | --- |
@@ -537,6 +552,7 @@ Mọi lệnh chạy là `python -m sbpvd...` để chạy giống nhau trên Win
 | Đầu ra | Nhà cung cấp | Người dùng | Điều kiện bàn giao |
 | --- | --- | --- | --- |
 | Fixture SBP, đặc tả nhãn | A (P-02) | B (G-02, G-04), C (D-07) | Fixture biên dịch được, có nhãn mong đợi |
+| Kiểm kê và đối chiếu `sbp_dataset` | A (D-10) | A (R-01), B (X-07), cả nhóm (R-05) | Báo cáo sinh từ script, nêu rõ giới hạn so sánh |
 | Fixture đồ thị, đặc tả đồ thị | B (P-03) | C (S-02 review, G-05), A (D-05) | Fixture có nút, cạnh, span mong đợi |
 | `compile_file()` và AST đã biên dịch | A (D-02) | B (G-01…G-04, I-03), A (D-03, D-04) | Test fixture 0.4.x và 0.8.x đạt |
 | API AST, `srcmap`, `enclosing_statement` | B (G-01, G-02) | A (D-03, D-05), C (D-06) | Test fixture đạt |
@@ -595,15 +611,15 @@ Mọi lệnh chạy là `python -m sbpvd...` để chạy giống nhau trên Win
 | Hiểu ngữ cảnh, vai trò, vấn đề của bài toán và thuyết trình | 1 | Phần bối cảnh trong báo cáo và slide; buổi diễn tập | R-04, R-06, P-01 | Đáp ứng đầy đủ |
 | Nắm bắt và giải thích phương pháp, kỹ thuật | 3 | Ba phần phương pháp, mỗi phần ứng với một trụ cột của bài báo và do người hiện thực trụ cột đó trình bày: SBP (A), đồ thị mã (B), SS-GNN (C); sơ đồ do nhóm vẽ | P-02, P-03, P-04, R-01, R-02, R-03 | Đáp ứng, nhưng phần nào không có trong bản in phải được trình bày là cách hiểu của nhóm |
 | Hiện thực và demo; biện luận ưu, nhược điểm | 5 | Pipeline chạy được từ `.sol` đến câu lệnh nghi ngờ; bảng thực nghiệm có baseline và ablation; báo cáo kiểm định nhãn, phân tích lỗi, hạn chế | D-01…D-09, G-01…G-05, M-01…M-04, E-01…E-05, I-01…I-04 | Đáp ứng nhánh "bài báo không có mã nguồn công khai": hiện thực các giai đoạn và kỹ thuật chính, kèm biện luận |
-| Điểm cộng xuất sắc | 1 | Thực nghiệm kịch bản gần với bài báo (so sánh các loại GNN, đánh giá cấp hợp đồng), tập kiểm thử ngoài, SBP hoặc loại lỗ hổng thứ hai | X-01…X-06 (cấp hợp đồng đã có trong E-04) | **Chưa bảo đảm.** Phần cốt lõi chỉ có một loại lỗ hổng và hai SBP, không cài đặt lại 3 baseline học sâu, không biết nội dung Table 4. Vì vậy chỉ thực nghiệm được kịch bản *tương tự*, không phải đúng kịch bản của bài báo |
+| Điểm cộng xuất sắc | 1 | Thực nghiệm kịch bản gần với bài báo trên cùng nguồn hợp đồng của tác giả (so sánh các loại GNN, đánh giá cấp hợp đồng, cách gán nhãn của tác giả), tập kiểm thử ngoài, SBP hoặc loại lỗ hổng thứ hai | X-01…X-07 (cấp hợp đồng đã có trong E-04; dùng `sbp_dataset` qua D-01, D-10) | **Chưa bảo đảm.** Phần cốt lõi chỉ có reentrancy, trong khi theo nguồn thứ cấp bài báo xét 7 loại lỗ hổng. Nhóm không cài đặt lại 3 baseline học sâu và chưa xem được Table 4. Vì vậy chỉ thực nghiệm được kịch bản *tương tự*, không phải đúng kịch bản của bài báo |
 
 ### F.3. Rủi ro và phương án thay thế
 
 | Mã | Rủi ro | Dấu hiệu nhận biết | Người xử lý | Phương án thay thế | Giới hạn so với mục tiêu ban đầu |
 | --- | --- | --- | --- | --- | --- |
-| R1 | Không đủ hàm có SBP reentrancy | Khảo sát D-01 hoặc kết quả D-03 dưới ngưỡng của P-02 | A | Bổ sung nguồn có nhiều hợp đồng hiện đại; ưu tiên R1b; đưa X-03 (CEI) vào cốt lõi và chuyển một việc cốt lõi khác của A sang người khác để giữ cân bằng | Dữ liệu ít đa dạng hơn; kết quả kém ổn định giữa các seed |
+| R1 | Không đủ hàm có SBP reentrancy | Khảo sát D-01 hoặc kết quả D-03 dưới ngưỡng của P-02 | A | Dùng thêm hàm có `nonReentrant` trong `sbp_dataset` (mẫu `example/` cho thấy bộ này có SBP đó); bổ sung nguồn có nhiều hợp đồng hiện đại; ưu tiên R1b; đưa X-03 (CEI) vào cốt lõi và chuyển một việc cốt lõi khác của A sang người khác để giữ cân bằng | Dữ liệu ít đa dạng hơn; kết quả kém ổn định giữa các seed |
 | R2 | Biên dịch nhiều phiên bản solc thất bại nhiều | Tỷ lệ biên dịch trong `compile-stats.md` thấp, lỗi tập trung ở một số phiên bản | A | Thu hẹp khoảng phiên bản (ví dụ chỉ ≥ 0.5.0); thử `solc-typed-ast` hoặc `crytic-compile` | Mất phần hợp đồng cũ; X-02 có thể không làm được vì SmartBugs-curated chủ yếu là mã cũ |
-| R3 | CFG sai hoặc chưa phủ hết cấu trúc | Test G-03 không đạt; đối chiếu với Slither có khác biệt không giải thích được | B | Dùng CFG của Slither rồi ánh xạ nút Slither về câu lệnh theo `src`; hoặc chỉ dùng cạnh tuần tự và rẽ nhánh đơn giản, ghi rõ cấu trúc bị đơn giản hóa | Định nghĩa đồ thị khác đặc tả; phải nêu trong phần hạn chế |
+| R3 | CFG sai hoặc chưa phủ hết cấu trúc | Test G-03 không đạt; đối chiếu với Slither có khác biệt không giải thích được | B | Dùng CFG của Slither (cách mã BSP_SC của tác giả làm [NTC]) rồi ánh xạ nút Slither về câu lệnh theo `src`; hoặc chỉ dùng cạnh tuần tự và rẽ nhánh đơn giản, ghi rõ cấu trúc bị đơn giản hóa | Định nghĩa đồ thị khác đặc tả; phải nêu trong phần hạn chế |
 | R4 | Nhãn nhiễu (neutral thực ra có lỗ hổng; nhãn dương không khai thác được) | Tỷ lệ đúng trong D-07 thấp hoặc kappa thấp; D-08 thấy nhiều neutral cùng dạng với nhãn dương | A (luật nhãn), C (kiểm định) | Siết luật (ví dụ chỉ gán dương khi có ghi trạng thái sau lời gọi); chỉ lấy neutral từ hợp đồng có dùng SBP; báo cáo thêm chỉ số trên tập con đã kiểm tra tay | Dữ liệu nhỏ hơn; mô hình học theo nhãn yếu, không phải nhãn đã kiểm chứng |
 | R5 | Mô hình học lối tắt (ví dụ "mọi lời gọi ra ngoài đều là lỗi") | Kết quả SS-GNN xấp xỉ B0; F1 trên tập ứng viên thấp | C | Báo cáo trung thực; phân tích theo `call_kind` và `neutral_source`; kiểm tra chuẩn hóa token | Không chứng minh được lợi ích của học sâu so với luật đơn giản trên dữ liệu này |
 | R6 | Mô hình không hội tụ hoặc Tree-LSTM chạy quá chậm | Không học thuộc được batch nhỏ (M-03); một epoch trên dữ liệu thật quá chậm để chạy đủ seed | C | Giới hạn độ sâu và kích thước cây; giảm dữ liệu; thay Tree-LSTM bằng bộ mã hóa đơn giản hơn chỉ cho các thí nghiệm phụ | Nếu phải thay Tree-LSTM ở thí nghiệm chính thì lệch khỏi phương pháp của bài báo; phải ghi rõ |
@@ -611,7 +627,8 @@ Mọi lệnh chạy là `python -m sbpvd...` để chạy giống nhau trên Win
 | R8 | Thiếu tài nguyên tính toán | Không chạy đủ các cấu hình của E-04 trên máy hiện có | C | Dùng GPU miễn phí đã kiểm kê ở P-05; giảm số seed hoặc số cấu hình, ưu tiên SS-GNN, B2, B3 | Độ tin cậy thống kê thấp hơn; phải nêu số seed thực tế |
 | R9 | Không có toàn văn, hiểu sai phương pháp | P-01 không tìm được bản đọc hợp lệ | A | Giữ nhãn ĐX/CXM ở mọi chỗ; hỏi giảng viên hoặc thư viện về quyền truy cập; cập nhật đặc tả khi có | Không được tuyên bố là tái hiện bài báo |
 | R10 | Slither không chạy được hoặc khó ánh xạ kết quả | Tỷ lệ hợp đồng Slither chạy được thấp (E-03) | B | So sánh trên tập con mà Slither chạy được, nêu độ phủ | So sánh với baseline tĩnh chỉ có giá trị trên tập con |
-| R11 | Một thành viên bị chặn vì việc phía trước chưa xong | Việc phụ thuộc chưa đạt tiêu chí hoàn thành | Chủ việc phía trước | Làm tiếp trên fixture hoặc mock theo schema (mục B.3); chủ việc phía trước bàn giao trước phần API cần thiết | Phải chạy lại trên dữ liệu thật khi bàn giao xong |
+| R11 | Bộ dữ liệu của tác giả không dùng được (liên kết Drive bị gỡ, định dạng khác mô tả, không có giấy phép rõ ràng) | D-10 không tải được tệp hoặc không đọc được nội dung | A | Dùng nguồn ứng viên khác ở D-01; ghi trích dẫn, không phát hành lại dữ liệu của tác giả trong repo nhóm | Mất khả năng đối chiếu với nhãn của tác giả và chạy trên cùng nguồn hợp đồng |
+| R12 | Một thành viên bị chặn vì việc phía trước chưa xong | Việc phụ thuộc chưa đạt tiêu chí hoàn thành | Chủ việc phía trước | Làm tiếp trên fixture hoặc mock theo schema (mục B.3); chủ việc phía trước bàn giao trước phần API cần thiết | Phải chạy lại trên dữ liệu thật khi bàn giao xong |
 
 ### F.4. Checklist cho từng thành viên
 
@@ -619,7 +636,7 @@ Một việc chỉ được đánh dấu xong khi đạt **toàn bộ** tiêu ch
 
 **Thành viên A**
 
-- [ ] P-01 Sổ căn cứ, quyết định hướng chính
+- [ ] P-01 Sổ căn cứ; xin giảng viên xác nhận nhánh rubric
 - [ ] P-02 Đặc tả SBP, luật nhãn và fixture
 - [ ] S-01 Schema `sample-v1` và validator
 - [ ] D-01 Corpus, manifest, khảo sát ngưỡng dữ liệu
@@ -628,10 +645,11 @@ Một việc chỉ được đánh dấu xong khi đạt **toàn bộ** tiêu ch
 - [ ] D-04 Loại SBP và kiểm chứng biến thể
 - [ ] D-05 Gán nhãn và xuất `samples`
 - [ ] I-02 Tích hợp trên lát dữ liệu thật
+- [ ] D-10 Kiểm kê và đối chiếu bộ dữ liệu của tác giả
 - [ ] E-02 Baseline B0
 - [ ] D-08 Thống kê dữ liệu và xung đột nhãn
 - [ ] R-04, R-01, R-05 Báo cáo và slide phần 1–2, biên tập tổng
-- [ ] Review: P-04, G-01, G-03, G-04, M-03, E-01, D-06, D-07, D-09, E-03, I-03, I-04 (chạy lại sạch), R-02
+- [ ] Review: P-04, G-01, G-03, M-03, E-01, D-06, D-07, D-09, E-03, I-03, I-04 (chạy lại sạch), R-02
 - [ ] Trình bày phần bối cảnh và dữ liệu SBP; trả lời câu hỏi về luật nhãn và hạn chế nhãn
 
 **Thành viên B**
@@ -667,7 +685,7 @@ Một việc chỉ được đánh dấu xong khi đạt **toàn bộ** tiêu ch
 - [ ] E-04 Thực nghiệm chính
 - [ ] I-04 Tái lập toàn bộ
 - [ ] R-03 Báo cáo và slide phần 4
-- [ ] Review: P-01, P-03, S-02, D-01, G-02, D-05, D-08, E-02, E-05, R-04, R-01, R-06
+- [ ] Review: P-01, P-03, S-02, D-01, G-02, D-05, G-04, D-10, D-08, E-02, E-05, R-04, R-01, R-06
 - [ ] Trình bày phần mô hình và kết quả; trả lời câu hỏi về Tree-LSTM, GNN, chỉ số, rò rỉ dữ liệu
 
 **Nghiệm thu chung của nhóm**
@@ -692,15 +710,15 @@ Một việc chỉ được đánh dấu xong khi đạt **toàn bộ** tiêu ch
 
 Các kiểm tra dưới đây được thực hiện bằng script đọc trực tiếp các bảng ở mục C.
 
-- **Chủ sở hữu:** 41 việc cốt lõi và 6 việc mở rộng, mã không trùng. Mọi việc có đúng một người chính và một người review khác người chính.
+- **Chủ sở hữu:** 42 việc cốt lõi và 7 việc mở rộng, mã không trùng. Mọi việc có đúng một người chính và một người review khác người chính.
 - **Phụ thuộc:** mọi mã việc được nhắc tới đều tồn tại. Đồ thị phụ thuộc không có vòng. Không việc cốt lõi nào phụ thuộc việc mở rộng.
-- **Tổng điểm:** 46 + 48 + 48 = 142, khớp tổng cột "Điểm công sức" của các việc cốt lõi. Điểm review 13 + 10 + 9 = 32, tính theo luật ở D.1.
-- **Cân bằng:** 32,4% / 33,8% / 33,8% theo điểm người chính; 33,9% / 33,3% / 32,8% khi cộng review. Cả hai cách tính đều nằm trong khoảng 30–36% ngay trong phần cốt lõi.
+- **Tổng điểm:** 49 + 48 + 48 = 145, khớp tổng cột "Điểm công sức" của các việc cốt lõi. Điểm review 12 + 10 + 11 = 33, tính theo luật ở D.1.
+- **Cân bằng:** 33,8% / 33,1% / 33,1% theo điểm người chính; 34,3% / 32,6% / 33,1% khi cộng review. Cả hai cách tính đều nằm trong khoảng 30–36% ngay trong phần cốt lõi.
 - **Đủ vai trò cho mỗi người:**
 
   | Thành viên | Đặc tả nghiên cứu | Việc kỹ thuật ≥5 điểm | Đánh giá | Báo cáo, trình bày |
   | --- | --- | --- | --- | --- |
-  | A | P-02 | 4 | E-02, D-08, I-02 | R-04, R-01, R-05 |
+  | A | P-02 | 4 | E-02, D-08, D-10, I-02 | R-04, R-01, R-05 |
   | B | P-03 | 4 | E-01, E-03, E-05, D-09 | R-02, R-06 |
   | C | P-04 | 4 | D-07, E-04 | R-03 |
 
@@ -709,7 +727,7 @@ Các kiểm tra dưới đây được thực hiện bằng script đọc trực
   | Nội dung bắt buộc | Việc phụ trách |
   | --- | --- |
   | 1. Chốt phạm vi | P-01…P-05 |
-  | 2. Dữ liệu và nhãn | D-01…D-05, D-07, D-08, D-09 |
+  | 2. Dữ liệu và nhãn | D-01…D-05, D-07, D-08, D-09, D-10 |
   | 3. Chia dữ liệu | D-06 |
   | 4. Biểu diễn mã | S-02, G-01…G-04 |
   | 5. Mô hình | G-05, M-01…M-04 |
