@@ -129,13 +129,31 @@ Cột "Xong khi" là bản rút gọn; tiêu chí đầy đủ ở mục C của
 
 Nên làm X-01, X-07, X-02 trước, vì chúng gần với kịch bản của bài báo nhất (giúp lấy điểm xuất sắc).
 
-## 5. Bắt đầu ngay
+## 5. Thứ tự làm việc đề xuất
 
-| Người | Làm ngay | Làm tiếp khi việc trước xong |
-| --- | --- | --- |
-| A | P-01, P-02 | S-01, D-01, rồi D-02 |
-| B | P-03 | S-02, G-01, rồi G-02 và E-01 |
-| C | **P-05 trước tiên**, rồi P-04 | S-03, M-01, rồi G-05 |
+Chia thành 10 đợt. Trong một đợt, ba người làm song song. Chỉ sang đợt sau khi đạt điều kiện ở cột cuối. "Đợt" là bước thứ tự, không phải mốc thời gian. Trong một ô có nhiều việc thì làm theo thứ tự từ trái sang phải.
+
+| Đợt | A — Dữ liệu SBP | B — Đồ thị, demo, đánh giá | C — Mô hình, thực nghiệm | Sang đợt sau khi |
+| --- | --- | --- | --- | --- |
+| 1. Khởi động | P-01, P-02 | P-03 | **P-05** (trước tiên), P-04 | Khung repo chạy được trên cả 3 máy; 3 đặc tả được review chấp nhận |
+| 2. Schema và nền | S-01, D-01, R-04 (bản nháp) | S-02, G-01 | S-03, M-01 | Có schema và đồ thị giả; đọc được AST; có corpus và manifest |
+| 3. Module lõi | D-02 | G-02 (giao `enclosing_statement` cho A ngay khi qua test), E-01 | G-05 (trên đồ thị giả) | Biên dịch hàng loạt chạy được; tách được nút câu lệnh; có bộ tính chỉ số |
+| 4. Module lõi (tiếp) | D-03 | G-03 (việc dài nhất, bắt đầu càng sớm càng tốt) | M-02, M-03, M-04 | Tìm được cơ chế khóa; mô hình huấn luyện và dự đoán được trên đồ thị giả |
+| 5. Mốc 1 | D-04, D-05 | G-03 (tiếp) | **I-01** (mốc 1); viết sẵn mã D-06 và giao thức chấm nhãn của D-07 | **Mốc 1 đạt**: cả chuỗi chạy thông trên dữ liệu giả; có `samples` thật |
+| 6. Mốc 2 | D-10, **I-02** (khi G-04 xong) | G-04 | D-06 (khi G-04 xong), gắn tag `data-v1` | **Mốc 2 đạt**: chuỗi chạy thông trên dữ liệu thật; dữ liệu được chia và đóng băng |
+| 7. Kiểm định và baseline | E-02 | E-03; bắt đầu I-03 với checkpoint giả | D-07 | Có nhãn chấm tay lượt 1; có dự đoán của B0 và B1 |
+| 8. Thực nghiệm | R-01 (phần phương pháp); D-08 (khi D-09 xong) | D-09, I-03 (tiếp) | **E-04** | Bảng kết quả chính đã chốt, mọi số truy được về registry |
+| 9. Phân tích | R-01 (phần kết quả) | E-05; I-03 thay checkpoint thật | R-03 | Có phân tích lỗi; demo chạy với mô hình thật |
+| 10. Hoàn thiện | Chạy lại sạch theo I-04 khi C làm xong (vai review); **R-05** khi R-02 xong (việc cuối cùng của nhóm) | R-02, R-06 | I-04 | Người khác chạy lại ra đúng chỉ số; báo cáo và slide đủ minh chứng; diễn tập xong |
+
+**Ghi chú về thứ tự**
+
+- **Chuỗi dài nhất là của B:** G-01 → G-02 → G-03 → G-04. Hai người còn lại tránh để B phải chờ: C làm P-05 đầu tiên; A review G-01 và G-03 ngay khi B gửi.
+- **C rảnh hơn ở đợt 5–6.** Dùng lúc đó viết sẵn mã chia tập (D-06) và giao thức chấm nhãn (D-07) trên dữ liệu mẫu, đồng thời review cho A và B.
+- **A rảnh hơn ở đợt 8.** Dùng lúc đó viết phần phương pháp của R-01, vì phần này không cần kết quả.
+- **I-03 và R-01 kéo dài qua nhiều đợt.** I-03 làm trước với checkpoint giả, chỉ thay checkpoint thật sau E-04. R-01 viết phần phương pháp trước, phần kết quả sau khi D-08 xong.
+- **Review không xếp thành đợt riêng.** Ai được nhờ review thì làm ngay trong đợt đó, vì việc tiếp theo của người kia đang chờ.
+- **Phần mở rộng (X-01…X-07)** chỉ bắt đầu sau đợt 8 (E-04 xong), và chỉ khi người đó đã xong hết việc cốt lõi của mình.
 
 Ba chỗ bàn giao dễ làm người khác phải chờ nhất:
 
@@ -145,6 +163,7 @@ Ba chỗ bàn giao dễ làm người khác phải chờ nhất:
 
 ## 6. Quy tắc làm việc chung
 
+- **Khi dùng AI agent**, agent làm theo [AGENTS.md](../AGENTS.md). Làm xong một việc, agent tự viết báo cáo vào `plan/bao-cao-viec/<MÃ>.md`, cập nhật [trạng thái](trang-thai-cong-viec.md), rồi in thông báo ai review và ai làm việc tiếp theo để dán vào nhóm chat. Nhớ điền tên các thành viên vào bảng "Thành viên" trong file trạng thái.
 - **Mỗi việc một nhánh Git**, đặt tên theo mã việc, ví dụ `task/D-03-sbp-detect`. Chỉ gộp vào `main` khi người review trong bảng chấp nhận.
 - **Người review phải chạy lại** test hoặc lệnh, không chỉ đọc mã.
 - **Xong** nghĩa là đạt hết tiêu chí trong kế hoạch đầy đủ **và** đã được review.
